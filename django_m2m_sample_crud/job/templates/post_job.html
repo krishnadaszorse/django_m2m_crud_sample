@@ -1,0 +1,15 @@
+<html>
+	<head></head>
+	<body>
+		<center>
+			<h3>Post New Job</h3>
+			<form action="." method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" value='Post Job'>
+			</form>
+			
+			<a href="{% url 'job_list' %}">Back to list</a>
+		</center>
+	</body>
+</html>

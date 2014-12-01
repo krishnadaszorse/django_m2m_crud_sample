@@ -1,0 +1,37 @@
+<html>
+	<head></head>
+	<body>
+		<center>
+			<h3>Jobs list</h3>
+			<table border='1'>
+				<thead>
+					<tr>
+						<th>sl no.</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Categories</th>
+						<th>Skills required</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for job in jobs %}
+					<tr>
+						<td>{{ forloop.counter }}</td>
+						<td>{{ job.title }}</td>
+						<td>{{ job.description }}</td>
+						<td>{% for cat in job.category.all %}{{ cat }}<br>{% endfor %}</td>
+						<td>{% for skill in job.skill.all %}{{ skill }}<br>{% endfor %}</td>
+						<td><a href="{% url 'update_job' job.id %}">update</a>|<a href="{% url 'delete_job' job.id %}">Delete</a></td>
+					</tr>
+					{% empty %}
+					<tr>
+						<td colspan="6">No jobs</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<a href="{% url 'post_job' %}">Post Job</a>
+		</center>
+	</body>
+</html>
